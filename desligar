@@ -1,0 +1,23 @@
+#!/bin/bash
+# Loop que mostra o menu principal
+while : ; do
+
+   # Mostra o menu na tela, com as ações disponíveis
+   resposta=$(
+     dialog --stdout               \
+            --title 'Gerenciador de energia '  \
+            --menu 'Escolha uma das opções abaixo:' \
+           0 0 0                   \
+           1 'Desligar o Servidor' \
+           0 'Sair'                )
+
+   # Ela apertou CANCELAR ou ESC, então vamos sair...
+   [ $? -ne 0 ] && break
+
+   # De acordo com a opção escolhida, dispara programas
+   case "$resposta" in
+        1) halt ;;
+        0) exit ;;
+
+esac
+done
